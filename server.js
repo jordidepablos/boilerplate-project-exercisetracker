@@ -75,7 +75,13 @@ app.post('/api/users/:uid/exercises', async (req, res, next) => {
     });
     user.exercises.push(newExercise);
     await user.save();
-    res.json(newExercise);
+    res.json({
+      _id: newExercise._id,
+      userId: newExercise.userId,
+      description: newExercise.description,
+      duration: newExercise.duration,
+      date: newExercise.date.toDateString()
+    });
   }
   catch (e) {
     next(new Error(`Error adding new exercise to user ${uid}:\n${e.toString()}`));

@@ -71,7 +71,7 @@ app.post('/api/users/:uid/exercises', async (req, res, next) => {
       userId: uid,
       description: desc,
       duration: dur,
-      date: dat || new Date()
+      date: dat || new Date('1990-01-01')
     });
     user.exercises.push(newExercise);
     await user.save();

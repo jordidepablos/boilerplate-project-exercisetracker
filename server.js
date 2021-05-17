@@ -71,13 +71,13 @@ app.post('/api/users/:uid/exercises', async (req, res, next) => {
       userId: uid,
       description: desc,
       duration: dur,
-      date: dat || new Date('1990-01-01')
+      date: dat || Date.now()
     });
     user.exercises.push(newExercise);
     await user.save();
     res.json({
       _id: newExercise._id,
-      userId: newExercise.userId,
+      username: user.username,
       description: newExercise.description,
       duration: newExercise.duration,
       date: newExercise.date.toDateString()
